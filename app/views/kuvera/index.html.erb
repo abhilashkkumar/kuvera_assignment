@@ -1,0 +1,104 @@
+</br>
+</br>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<%= form_tag (kuvera_index_path), method: :post do %>
+			 <div class="row">
+			  	<div class="col-2">
+			  		Select Scheme:
+			  	</div>
+			  	<div class="col-10">
+			  		<%=select_tag "code", options_from_collection_for_select(@schemes, "code", "name"), class: "col-12"%>
+			  	</div>
+			 </div>
+			 </br>
+			 <div class="row">
+			 	<div class="col-6">
+			 		<div class="row">
+					  	<div class="col-4">
+					  		Purchasing Amount:
+					  	</div>
+					  	<div class="col-8">
+					 	 <%=number_field_tag :amount%>
+					  	</div>
+				  	</div>
+			  	</div>
+			  	<div class="col-6">
+			  		<div class="row">
+			  			<div class="col-3"></div>
+			  			<div class="col-4">
+			  				Purchasing Date:
+			  			</div>
+			  			<div class="col-4">
+			  				<%= date_field_tag :date%>
+			  			</div>
+			  		</div>
+			 	</div>
+			  </div>
+			  </br>
+			  <div class="row">
+			  		<div class="col-12">
+			  			<%= submit_tag "Add", class: "col-12 btn btn-primary"%>
+			  		</div>
+			  </div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+</br>
+
+<% if @purchased_schemes.present? %>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<table class="table table-inverse">
+					<tr>
+					    <th>Scheme</th>
+					    <th>Purchasing Price</th>
+					    <th>Purchasing Date</th>
+					  </tr>
+					<%@purchased_schemes.each do |purchased_scheme|%>
+					  <tr scope="row">
+					    <td ><%= @schemes.find_by_code(purchased_scheme["code"]).name%></td>
+					    <td ><%= purchased_scheme["amount"]%></td>
+					    <td ><%= purchased_scheme["date"]%></td>
+					  </tr>
+					<%end%>
+				</table>
+			</div>
+		</div>
+	</div>
+<%end%>
+
+<div class="container">
+	<div class="row"> 
+		<div class="col-4">
+			total investment
+		</div>
+		<div class="col-8">
+			<%=@investment%>
+		</div>
+	</div>
+	<div class="row"> 
+		<div class="col-4">
+			total return
+		</div>
+		<div class="col-8">
+			<%=@return%>
+		</div>
+	</div>
+</div>
+</br>
+<% if @purchased_schemes.present? %>
+	<div class="container">
+		<div class="row"> 
+			<div class="col-12">
+				<%= form_tag (clear_session_path), method: :get do %>	
+				  <%= submit_tag "Clear Data", class: "col-5 btn btn-danger"%>
+				<% end %>
+			</div>
+		</div>
+	</div>
+<%end%>
