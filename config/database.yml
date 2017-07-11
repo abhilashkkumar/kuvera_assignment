@@ -14,8 +14,9 @@ development:
   reconnect: false
   database:  kuvera_development
   pool: 5
+  # change usename and password
   username: root
-  password: Abhilashkumar97!!
+  password: 
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -27,8 +28,9 @@ test:
   reconnect: false
   database: kuvera_test
   pool: 5
+  # change usename and password
   username: root
-  password: Abhilashkumar97!!
+  password: 
   host: localhost
 
 production:
@@ -37,7 +39,8 @@ production:
   reconnect: false
   database: kuvera_production
   pool: 5
+  # change usename and password
   username: root
-  password: Abhilashkumar97!!
+  password: 
   #socket: /tmp/mysql.sock
   #host: localhost
